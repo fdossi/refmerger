@@ -118,7 +118,7 @@ Dossi, F. C. A. (2026). RefMerger (Version 1.0.0) [Computer software]. GitHub. h
 
 BibTeX (For LaTeX users)
 @software{Dossi_RefMerger_2026,
-  author = {Dossi, Fabio Cleisto Alda},
+  author = {Dossi, F. C. A.},
   title = {{RefMerger: Automating reference merging and deduplication}},
   url = {https://github.com/fdossi/refmerger},
   version = {1.0.0},
@@ -126,7 +126,7 @@ BibTeX (For LaTeX users)
 }
 
 ABNT (Brazil)
-DOSSI, Fabio Cleisto Alda. RefMerger: a tool for automating the merging and deduplication of references. Version 1.0.0. Aracaju, 2026. Available at: https://github.com/fdossi/refmerger. Accessed on: Apr. 23, 2026.
+DOSSI, Fabio F. C. A. RefMerger: a tool for automating the merging and deduplication of references. Version 1.0.0. Aracaju, 2026. Available at: https://github.com/fdossi/refmerger. Accessed on: Apr. 23, 2026.
 
 MLA (9th Edition)
-Dossi, Fabio Cleisto Alda. RefMerger. Version 1.0.0, 2026, github.com/fdossi/refmerger.
+Dossi, F. C. A. RefMerger. Version 1.0.0, 2026, github.com/fdossi/refmerger.
