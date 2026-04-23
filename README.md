@@ -1,270 +1,132 @@
-# RefMerger: Ferramenta de Processamento de Referências Bibliográficas
+# RefMerger: Bibliographic Reference Processing Tool
 
-**RefMerger** é uma ferramenta Python robusta e gratuita para pesquisadores, bibliotecários e acadêmicos que trabalham com grandes volumes de referências bibliográficas. Ela automatiza o processo tedioso de mesclar referências de múltiplas fontes e remover duplicatas, economizando horas de trabalho manual.
+**RefMerger** is a robust and free Python tool for researchers, librarians, and academics working with large volumes of bibliographic references. It automates the tedious process of merging references from multiple sources and removing duplicates, saving hours of manual work.
 
-## Descrição Detalhada
+## Detailed Description
 
-Em projetos de pesquisa, é comum coletar referências de diversas fontes como PubMed, Web of Science, Scopus ou bases de dados locais. Cada fonte exporta em formatos diferentes (.bib, .xml, .csv, .json), e ao juntá-los, surgem duplicatas inevitáveis. RefMerger resolve isso convertendo tudo para o formato RIS (padrão para gestores de referências como Zotero, Mendeley e EndNote), mesclando os arquivos e aplicando deduplicação inteligente.
+In research projects, it is common to collect references from various sources such as PubMed, Web of Science, Scopus, or local databases. Each source exports in different formats (.bib, .xml, .csv, .json), and when joining them, inevitable duplicates arise. RefMerger solves this by converting everything to RIS format (standard for reference managers like Zotero, Mendeley, and EndNote), merging the files, and applying intelligent deduplication.
 
-### Principais Benefícios:
-- **Suporte Multi-Formato**: Converte automaticamente .bib (BibTeX), .xml (PubMed), .csv, .json e .ris
-- **Deduplicação Avançada**: Usa algoritmos de similaridade para detectar duplicatas mesmo com variações de título ou formatação
-- **Flexibilidade**: Modos configuráveis de deduplicação para diferentes necessidades
-- **Robusto**: Trata encodings variados e erros de arquivo graciosamente
-- **Gratuito e Open-Source**: Código Python puro, sem dependências pesadas
+### Main Benefits:
+- **Multi-Format Support**: Automatically converts .bib (BibTeX), .xml (PubMed), .csv, .json, and .ris
+- **Advanced Deduplication**: Uses similarity algorithms to detect duplicates even with title variations or formatting
+- **Flexibility**: Configurable deduplication modes for different needs
+- **Robust**: Handles various encodings and file errors gracefully
+- **Free and Open-Source**: Pure Python code, no heavy dependencies
 
-## Funcionalidades
+## Features
 
-- **Conversão de Formatos**: Suporta .ris, .bib, .xml, .csv, .json
-- **Junção de Arquivos**: Combina múltiplos arquivos em um único RIS
-- **Deduplicação Robusta**: Remove duplicatas com prioridade DOI > PMID > Título+Ano+Autor > Hash
-- **Modos de Deduplicação**:
-  - `estrito`: Apenas DOI
-  - `balanceado`: DOI + Título/Ano/Autor
-  - `agressivo`: Inclui similaridade de títulos (90%+)
-- **Exportação**: Para CSV ou JSON (opcional)
-- **Detecção de Encoding**: UTF-8, Latin-1, Windows-1252
+- **Format Conversion**: Supports .ris, .bib, .xml, .csv, .json
+- **File Merging**: Combines multiple files into a single RIS
+- **Robust Deduplication**: Removes duplicates with priority DOI > PMID > Title+Year+Author > Hash
+- **Deduplication Modes**:
+  - `strict`: DOI only
+  - `balanced`: DOI + Title/Year/Author
+  - `aggressive`: Includes title similarity (90%+)
+- **Export**: To CSV or JSON (optional)
+- **Encoding Detection**: UTF-8, Latin-1, Windows-1252
 
-## Funcionalidades
+## Installation
 
-- **Conversão de Formatos**: Suporta .ris, .bib, .xml, .csv, .json
-- **Junção de Arquivos**: Combina múltiplos arquivos em um único RIS
-- **Deduplicação Robusta**: Remove duplicatas com prioridade DOI > PMID > Título+Ano+Autor > Hash
-- **Modos de Deduplicação**:
-  - `estrito`: Apenas DOI
-  - `balanceado`: DOI + Título/Ano/Autor
-  - `agressivo`: Inclui similaridade de títulos (90%+)
-- **Exportação**: Para CSV ou JSON (opcional)
-- **Detecção de Encoding**: UTF-8, Latin-1, Windows-1252
-
-## Instalação
-
-1. **Clone o repositório**:
+1. **Clone the repository**:
    ```bash
    git clone https://github.com/fdossi/refmerger.git
    cd refmerger
    ```
 
-2. **Instale dependências** (opcional, apenas para .bib):
+2. **Install dependencies** (optional, only for .bib):
    ```bash
    pip install bibtexparser
    ```
 
-3. **Execute o script**:
+3. **Run the script**:
    ```bash
    python refmerger.py
    ```
 
-## Como Usar
+## How to Use
 
-1. Coloque todos os arquivos (.ris, .bib, .xml, .csv, .json) na mesma pasta.
-2. Edite as variáveis no final do script:
-   - `pasta_dos_arquivos`: Caminho da pasta
-   - `modo_deduplicacao`: 'estrito', 'balanceado' ou 'agressivo'
-   - `formato_exportar`: None (RIS), 'csv' ou 'json'
-3. Execute o script Python.
+1. Place all files (.ris, .bib, .xml, .csv, .json) in the same folder.
+2. Edit the variables at the end of the script:
+   - `pasta_dos_arquivos`: Folder path
+   - `modo_deduplicacao`: 'strict', 'balanced', or 'aggressive'
+   - `formato_exportar`: None (RIS), 'csv', or 'json'
+3. Run the Python script.
 
-### Exemplo de Uso:
+### Usage Example:
 ```python
-# Configurações no final do refmerger.py
-pasta_dos_arquivos = r"C:\Meus\Arquivos\Referencias"
-modo_deduplicacao = 'balanceado'
-formato_exportar = None  # Saída em RIS
+# Settings at the end of refmerger.py
+pasta_dos_arquivos = r"C:\My\Files\References"
+modo_deduplicacao = 'balanced'
+formato_exportar = None  # Output in RIS
 ```
 
-Saída esperada:
+Expected output:
 ```
-Sucesso! 25 arquivos foram juntados em 'todas_referencias_juntas.ris'.
-707 referência(s) duplicada(s) removida(s). Total final: 268 referência(s) única(s).
+Success! 25 files were merged into 'todas_referencias_juntas.ris'.
+707 duplicate reference(s) removed. Final total: 268 unique reference(s).
 ```
 
-## Dependências
+## Dependencies
 
 - Python 3.x
-- bibtexparser (para .bib): `pip install bibtexparser`
-- Bibliotecas padrão: os, glob, re, json, csv, xml.etree, unicodedata, hashlib, difflib
+- bibtexparser (for .bib): `pip install bibtexparser`
+- Standard libraries: os, glob, re, json, csv, xml.etree, unicodedata, hashlib, difflib
 
-## Exemplo de Saída
+## Example Output
 
 ```
-Sucesso! 25 arquivos foram juntados em 'todas_referencias_juntas.ris'.
-707 referência(s) duplicada(s) removida(s). Total final: 268 referência(s) única(s).
+Success! 25 files were merged into 'todas_referencias_juntas.ris'.
+707 duplicate reference(s) removed. Final total: 268 unique reference(s).
 ```
 
-## Formatos Suportados
+## Supported Formats
 
 ### .bib (BibTeX)
-Campos: title, author, year, doi, journal
+Fields: title, author, year, doi, journal
 
 ### .xml (PubMed)
-Estrutura esperada: ArticleTitle, Author/LastName, Year, DOI
+Expected structure: ArticleTitle, Author/LastName, Year, DOI
 
 ### .csv
-Colunas: title, authors (separados por ;), year, doi
+Columns: title, authors (separated by ;), year, doi
 
 ### .json
-Estrutura: [{"title": "...", "authors": [...], "year": "...", "doi": "..."}]
+Structure: [{"title": "...", "authors": [...], "year": "...", "doi": "..."}]
 
-## Contribuição
+## Contribution
 
-Contribuições são bem-vindas! Para contribuir:
+Contributions are welcome! To contribute:
 
-1. Fork o repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
-3. Commit suas mudanças (`git commit -am 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
+1. Fork the repository
+2. Create a branch for your feature (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
 
-## Licença
+## License
 
-Este projeto está licenciado sob a MIT License - veja o arquivo LICENSE para detalhes.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Autor
+## Author
 
-Desenvolvido por [Seu Nome] - fdossi
-   - Exemplos de uso em pesquisas (se aplicável)
+Developed by Fábio Dossi.
 
-3. **Acknowledgements** (opcional)
-   - Contribuições que não justificam coautoria
-   - Financiamento (agências e números de grant)
+Note: If this tool assists in your research, feel free to cite it in your paper. It’s **entirely optional**, but always appreciated!
 
-4. **References**
-   - Gerado automaticamente do arquivo .bib
+APA (7th Edition)
+Dossi, F. C. A. (2026). RefMerger (Version 1.0.0) [Computer software]. GitHub. https://github.com/fdossi/refmerger
 
-## Diretrizes de Formatação
+BibTeX (For LaTeX users)
+@software{Dossi_RefMerger_2026,
+  author = {Dossi, Fabio Cleisto Alda},
+  title = {{RefMerger: Automating reference merging and deduplication}},
+  url = {https://github.com/fdossi/refmerger},
+  version = {1.0.0},
+  year = {2026}
+}
 
-### Texto
-- **Tamanho**: 250-1000 palavras (excluindo referências)
-- **Tom**: Acessível a pesquisadores de diversas áreas
-- **Evite**: Listas com bullet points (use prosa)
-- **Evite**: Documentação de API (isso vai na documentação do software)
+ABNT (Brazil)
+DOSSI, Fabio Cleisto Alda. RefMerger: a tool for automating the merging and deduplication of references. Version 1.0.0. Aracaju, 2026. Available at: https://github.com/fdossi/refmerger. Accessed on: Apr. 23, 2026.
 
-### Citações
-- Use sintaxe Markdown: `[@referencia1]` ou `[@ref1; @ref2]`
-- No arquivo .bib, use nomes COMPLETOS de revistas/conferências
-- Inclua DOI sempre que possível
-
-### Matemática
-- Inline: `$f(x) = e^{\pi/x}$`
-- Display: `$$\Delta U = Q - W$$`
-- Ou use LaTeX direto:
-  ```
-  \begin{equation}\label{eq:nome}
-  \hat f(\omega) = \int_{-\infty}^{\infty} f(x) e^{i\omega x} dx
-  \end{equation}
-  ```
-
-### Código
-Use blocos de código Markdown:
-```python
-import edslab
-resultado = edslab.processar(dados)
-```
-
-## Testando Localmente
-
-### Com Docker
-```bash
-docker run --rm \
-  --volume $PWD:/data \
-  --user $(id -u):$(id -g) \
-  --env JOURNAL=joss \
-  openjournals/inara
-```
-
-Isso gera `paper.pdf` no diretório atual.
-
-### Com GitHub Actions
-Adicione este workflow ao seu repositório em `.github/workflows/draft-pdf.yml`:
-
-```yaml
-name: Draft PDF
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-
-jobs:
-  paper:
-    runs-on: ubuntu-latest
-    name: Paper Draft
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Build PDF
-        uses: openjournals/openjournals-draft-action@master
-        with:
-          journal: joss
-          paper-path: paper.md
-      - name: Upload
-        uses: actions/upload-artifact@v3
-        with:
-          name: paper
-          path: paper.pdf
-```
-
-## Preparando para Submissão
-
-1. **Complete todos os campos** marcados com `[...]` no `paper.md`
-2. **Adicione referências** ao `paper.bib` e cite-as no texto
-3. **Revise o tamanho**: deve ter 250-1000 palavras
-4. **Teste localmente**: gere o PDF e verifique a formatação
-5. **Coloque no repositório**: junto com o código do software
-6. **Crie um release** com tag de versão (ex: v1.0.0)
-7. **Archive no Zenodo** e obtenha um DOI
-
-## Processo de Submissão JOSS
-
-1. Acesse https://joss.theoj.org/
-2. Clique em "Submit"
-3. Preencha o formulário com:
-   - URL do repositório
-   - Versão do software
-   - Editor sugerido (opcional)
-4. Aguarde pre-review do editor
-5. Responda a comentários dos revisores
-6. Faça alterações solicitadas
-7. Após aceite, publique release final e atualize DOI
-
-## Recursos Adicionais
-
-- **Documentação JOSS**: https://joss.readthedocs.io/
-- **Exemplo de artigo**: https://joss.readthedocs.io/en/latest/example_paper.html
-- **Diretrizes para revisores**: https://joss.readthedocs.io/en/latest/reviewer_guidelines.html
-- **Critérios de revisão**: https://joss.readthedocs.io/en/latest/review_criteria.html
-
-## Checklist Pré-Submissão
-
-- [ ] Software tem licença OSI-approved
-- [ ] Código está em repositório Git público
-- [ ] Documentação clara está disponível
-- [ ] Testes automatizados implementados
-- [ ] README.md descreve instalação e uso básico
-- [ ] Arquivo paper.md completo (250-1000 palavras)
-- [ ] Arquivo paper.bib com todas as referências
-- [ ] Metadados YAML preenchidos corretamente
-- [ ] PDF gerado localmente sem erros
-- [ ] ORCID dos autores verificado
-- [ ] Afiliações corretas
-- [ ] DOI ou link do software disponível
-
-## Dicas Finais
-
-1. **Seja conciso**: JOSS valoriza brevidade e clareza
-2. **Foco no valor**: Explique POR QUE seu software é útil
-3. **Público amplo**: Escreva para pesquisadores de outras áreas
-4. **Cite bem**: Referencie trabalhos relacionados adequadamente
-5. **Documente bem**: A documentação do software é tão importante quanto o artigo
-6. **Testes**: Cobertura de testes é critério de revisão
-7. **Comunidade**: Responda aos revisores de forma colaborativa
-
-## Suporte
-
-- **Issues no GitHub JOSS**: https://github.com/openjournals/joss/issues
-- **Email**: admin@theoj.org (apenas para questões confidenciais)
-- **Discussões**: https://github.com/openjournals/joss/discussions
-
----
-
-**Nota**: Este modelo está atualizado conforme as diretrizes do JOSS em janeiro de 2025. Sempre consulte a documentação oficial para informações mais recentes.
+MLA (9th Edition)
+Dossi, Fabio Cleisto Alda. RefMerger. Version 1.0.0, 2026, github.com/fdossi/refmerger.
