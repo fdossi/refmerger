@@ -1,6 +1,17 @@
-# Ferramenta de Processamento de Referências Bibliográficas
+# RefMerger: Ferramenta de Processamento de Referências Bibliográficas
 
-Esta ferramenta permite processar arquivos de referências bibliográficas de diversos formatos, convertê-los para RIS, juntá-los em um único arquivo e remover duplicatas.
+**RefMerger** é uma ferramenta Python robusta e gratuita para pesquisadores, bibliotecários e acadêmicos que trabalham com grandes volumes de referências bibliográficas. Ela automatiza o processo tedioso de mesclar referências de múltiplas fontes e remover duplicatas, economizando horas de trabalho manual.
+
+## Descrição Detalhada
+
+Em projetos de pesquisa, é comum coletar referências de diversas fontes como PubMed, Web of Science, Scopus ou bases de dados locais. Cada fonte exporta em formatos diferentes (.bib, .xml, .csv, .json), e ao juntá-los, surgem duplicatas inevitáveis. RefMerger resolve isso convertendo tudo para o formato RIS (padrão para gestores de referências como Zotero, Mendeley e EndNote), mesclando os arquivos e aplicando deduplicação inteligente.
+
+### Principais Benefícios:
+- **Suporte Multi-Formato**: Converte automaticamente .bib (BibTeX), .xml (PubMed), .csv, .json e .ris
+- **Deduplicação Avançada**: Usa algoritmos de similaridade para detectar duplicatas mesmo com variações de título ou formatação
+- **Flexibilidade**: Modos configuráveis de deduplicação para diferentes necessidades
+- **Robusto**: Trata encodings variados e erros de arquivo graciosamente
+- **Gratuito e Open-Source**: Código Python puro, sem dependências pesadas
 
 ## Funcionalidades
 
@@ -14,6 +25,36 @@ Esta ferramenta permite processar arquivos de referências bibliográficas de di
 - **Exportação**: Para CSV ou JSON (opcional)
 - **Detecção de Encoding**: UTF-8, Latin-1, Windows-1252
 
+## Funcionalidades
+
+- **Conversão de Formatos**: Suporta .ris, .bib, .xml, .csv, .json
+- **Junção de Arquivos**: Combina múltiplos arquivos em um único RIS
+- **Deduplicação Robusta**: Remove duplicatas com prioridade DOI > PMID > Título+Ano+Autor > Hash
+- **Modos de Deduplicação**:
+  - `estrito`: Apenas DOI
+  - `balanceado`: DOI + Título/Ano/Autor
+  - `agressivo`: Inclui similaridade de títulos (90%+)
+- **Exportação**: Para CSV ou JSON (opcional)
+- **Detecção de Encoding**: UTF-8, Latin-1, Windows-1252
+
+## Instalação
+
+1. **Clone o repositório**:
+   ```bash
+   git clone https://github.com/fdossi/refmerger.git
+   cd refmerger
+   ```
+
+2. **Instale dependências** (opcional, apenas para .bib):
+   ```bash
+   pip install bibtexparser
+   ```
+
+3. **Execute o script**:
+   ```bash
+   python refmerger.py
+   ```
+
 ## Como Usar
 
 1. Coloque todos os arquivos (.ris, .bib, .xml, .csv, .json) na mesma pasta.
@@ -22,6 +63,20 @@ Esta ferramenta permite processar arquivos de referências bibliográficas de di
    - `modo_deduplicacao`: 'estrito', 'balanceado' ou 'agressivo'
    - `formato_exportar`: None (RIS), 'csv' ou 'json'
 3. Execute o script Python.
+
+### Exemplo de Uso:
+```python
+# Configurações no final do refmerger.py
+pasta_dos_arquivos = r"C:\Meus\Arquivos\Referencias"
+modo_deduplicacao = 'balanceado'
+formato_exportar = None  # Saída em RIS
+```
+
+Saída esperada:
+```
+Sucesso! 25 arquivos foram juntados em 'todas_referencias_juntas.ris'.
+707 referência(s) duplicada(s) removida(s). Total final: 268 referência(s) única(s).
+```
 
 ## Dependências
 
@@ -49,6 +104,24 @@ Colunas: title, authors (separados por ;), year, doi
 
 ### .json
 Estrutura: [{"title": "...", "authors": [...], "year": "...", "doi": "..."}]
+
+## Contribuição
+
+Contribuições são bem-vindas! Para contribuir:
+
+1. Fork o repositório
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
+3. Commit suas mudanças (`git commit -am 'Adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abra um Pull Request
+
+## Licença
+
+Este projeto está licenciado sob a MIT License - veja o arquivo LICENSE para detalhes.
+
+## Autor
+
+Desenvolvido por [Seu Nome] - fdossi
    - Exemplos de uso em pesquisas (se aplicável)
 
 3. **Acknowledgements** (opcional)
